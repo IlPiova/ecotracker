@@ -2,8 +2,8 @@ import type { User } from "@/assets/Types/Types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-const initialUserState: { user: User | null } = {
-  user: null,
+const initialUserState: { user: User } = {
+  user: { name: "", lastName: "", profilePic: "", motto: "" },
 };
 
 export const user = createSlice({

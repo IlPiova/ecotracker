@@ -2,6 +2,22 @@ type User = {
   name: string;
   lastName: string;
   profilePic: string;
+  motto: string;
 };
 
-export { type User };
+type Task = {
+  id: string;
+  label: string;
+  category: "H2O" | "CO2" | "Society";
+  isDone: boolean;
+};
+
+type Habit = {
+  id: number;
+  label: string;
+  category: "H2O" | "CO2" | "Society";
+  isDone: boolean;
+  doneDate: Date[];
+};
+
+export { type User, type Task, type Habit };

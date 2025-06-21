@@ -1,54 +1,16 @@
-# React + TypeScript + Vite
+# EcoTracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EcoTracker è una PWA che permette all'utente di tenere traccia le azioni quootidiaane che compie per salvare il pianeta.
 
-Currently, two official plugins are available:
+Testa e installa l'applicazione da qui
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Le attività
 
-## Expanding the ESLint configuration
+Abbiamo due tipi di attività possibili:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- Task: semplici attività che vengono effettuate un giorno
+- Abitudini: attività che vengono svolte quotidianamente
+  Entrambe queste tipologie di attività possono appartenere a una di tre categorie:
+- H2O: attività che riguardano il risparmio di acqua
+- CO2: attività che riguardano le emissioni di CO2 e gas equivalenti
+- Società: attività che rispettano l'ambiente e migliorano la società in cui si vive

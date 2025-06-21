@@ -1,5 +1,5 @@
 import { type User } from "@/assets/Types/Types";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/shadcn-ui/input";
 
 import type { RootState } from "../../../store/Store";
 import { useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { editUser } from "../../../features/userSlice/UserSlice";
 
 import { useState, type FormEvent } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/shadcn-ui/button";
 import { Link } from "react-router";
 
 export default function ProfileSettings() {
@@ -18,6 +18,7 @@ export default function ProfileSettings() {
       name: "",
       lastName: "",
       profilePic: "",
+      motto: "",
     }
   );
 
@@ -68,8 +69,8 @@ export default function ProfileSettings() {
           type="text"
           name="name"
           id="name"
-          alt="Insert user name"
-          placeholder="Insert user name"
+          alt="Insert user's name"
+          placeholder="Insert user's name"
           value={newUser?.name}
           onChange={handleChange}
         />
@@ -79,13 +80,22 @@ export default function ProfileSettings() {
           type="text"
           name="lastName"
           id="lastName"
-          alt="Insert user name"
-          placeholder="Insert user last name"
+          alt="Insert user's last name"
+          placeholder="Insert user's last name"
           value={newUser?.lastName}
           onChange={handleChange}
         />
 
-        <label htmlFor="birthDate">Birthday:</label>
+        <label htmlFor="lastName">Your motto:</label>
+        <Input
+          type="text"
+          name="motto"
+          id="motto"
+          alt="Insert user's motto"
+          placeholder="Insert user's motto"
+          value={newUser?.motto}
+          onChange={handleChange}
+        />
 
         <Button variant={"default"} type="submit">
           Save

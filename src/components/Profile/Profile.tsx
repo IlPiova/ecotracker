@@ -1,8 +1,12 @@
-import { Link } from "react-router";
-import { Button } from "../ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+// import { Link } from "react-router";
+// import { Button } from "../shadcn-ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "../shadcn-ui/popover";
+
+import { Avatar, AvatarFallback, AvatarImage } from "../shadcn-ui/avatar";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store/Store";
+import Navbar from "../navbar/Navbar";
+import ProfileSettings from "./Profile-settings/ProfileSettings";
 
 export default function Profile() {
   const user = useSelector((state: RootState) => state.user.user);
@@ -17,14 +21,15 @@ export default function Profile() {
         <p className="text-3xl font-extrabold">
           {user?.name} {user?.lastName}
         </p>
+        <p className="italic font-light">{user?.motto}</p>
       </div>
-      <Link to={"/profile/settings"}>
-        <Button variant={"secondary"}>Edit profile</Button>
-      </Link>
-
-      <Link to={"/"}>
-        <Button variant={"outline"}>Home</Button>
-      </Link>
+      <Popover>
+        <PopoverTrigger>Edit profile</PopoverTrigger>
+        <PopoverContent>
+          <ProfileSettings />
+        </PopoverContent>
+      </Popover>
+      <Navbar />
     </>
   );
 }
