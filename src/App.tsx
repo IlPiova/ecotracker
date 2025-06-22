@@ -3,7 +3,9 @@ import Home from "./components/Home/Home";
 function App() {
   return (
     <>
-      <Home />
+      <div className="app-wrapper">
+        <Home />
+      </div>
     </>
   );
 }

@@ -1,12 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-// import { type RootState } from "@/store/Store";
 import { useState, type FormEvent } from "react";
 
-import {
-  addTask,
-  // removeTask,
-  // editTaskLabel,
-} from "@/features/TasksSlice/TasksSlice";
+import { addTask } from "@/features/TasksSlice/TasksSlice";
 import Navbar from "../navbar/Navbar";
 import Tasks from "../Tasks/Tasks";
 import Habits from "../Habits/Habits";
@@ -21,10 +16,12 @@ import {
 } from "../shadcn-ui/select";
 import { Input } from "../shadcn-ui/input";
 import { Button } from "../shadcn-ui/button";
+import { RxPlus } from "react-icons/rx";
+import type { RootState } from "@/store/Store";
 
 export default function Home() {
-  // const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user.user);
 
   const [formValues, setFormValues] = useState<{
     label: string;
@@ -40,6 +37,7 @@ export default function Home() {
     setFormValues({ label: "", category: "CO2" });
   }
 
+  // Funzione crea singola task
   function createTask() {
     return (
       <form onSubmit={handleSubmit}>
@@ -83,15 +81,27 @@ export default function Home() {
     );
   }
 
+  //Layout home
+
   return (
     <>
-      <div className="flex flex-col items-center justify-around gap-4 w-full h-full border-4 border-amber-400">
-        <Tasks />
-        <Habits />
-        <Popover>
-          <PopoverTrigger>+</PopoverTrigger>
-          <PopoverContent>{createTask()}</PopoverContent>
-        </Popover>
+      <h1 className="text-4xl font-black mb-10 m-4">
+        Ciao <span className="text-primary "> {user.name}</span>!
+      </h1>
+      <div className="flex flex-col items-center justify-start  w-fit h-full m-4 ">
+        <div className=" flex flex-col items-start justify-centergap-4 w-fit">
+          <h2 className="text-xl font-bold mb-4">Cosa vuoi fare oggi?</h2>
+          <Tasks />
+          <Habits />
+        </div>
+        <div className="absolute bottom-15 right-6 ">
+          <Popover>
+            <PopoverTrigger className=" bg-primary text-lg font-bold rounded-full p-4 ">
+              <RxPlus className="h-6 w-auto text-secondary" />
+            </PopoverTrigger>
+            <PopoverContent>{createTask()}</PopoverContent>
+          </Popover>
+        </div>
         <Navbar />
       </div>
     </>

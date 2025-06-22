@@ -50,6 +50,7 @@ export default function ProfileSettings() {
     e.preventDefault();
     dispatch(editUser(newUser));
   }
+
   return (
     <>
       <form onSubmit={handleSubmit}>

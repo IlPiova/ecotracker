@@ -16,26 +16,28 @@ export default function Tasks() {
   function handleDeleteTask(id: string) {
     dispatch(removeTask(id));
   }
+
   function handleEditTask(id: string, e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     setNewLabel(value);
     dispatch(editTaskLabel({ id, label: value }));
   }
+
   function createList(id: string, label: string) {
     return (
-      <div className="flex flex-col  justify-center items-stretch gap-4 w-fit">
+      <div className="flex flex-col justify-center items-stretch gap-4 w-fit">
         <Popover>
           <PopoverTrigger>
-            <Button variant={"ghost"}>Edit task</Button>{" "}
+            <Button variant={"ghost"}>Edit task</Button>
           </PopoverTrigger>
           <PopoverContent className=" w-fit">
             <Input
               type="text"
               name="name"
               id="name"
-              alt="Insert user's name"
-              placeholder="Insert user's name"
-              value={newLabel}
+              alt="Insert your task"
+              placeholder="Insert your task"
+              value={label}
               onChange={(e) => handleEditTask(id, e)}
             />
           </PopoverContent>
@@ -51,22 +53,24 @@ export default function Tasks() {
   return (
     <>
       {tasks && tasks.length > 0 ? (
-        tasks.map((task) => (
-          <div
-            key={task.id}
-            className="flex justify-start items-start rounded-lg border-2 border-primary bg-primary-foreground w-full h-auto p-4"
-          >
-            <h2 className="font-bold">{task.label}</h2>
-            <Popover>
-              <PopoverTrigger>
-                <RxDotsVertical />
-              </PopoverTrigger>
-              <PopoverContent className=" w-fit">
-                {createList(task.id, task.label)}
-              </PopoverContent>
-            </Popover>
-          </div>
-        ))
+        <div className="flex flex-col justify-center items-center gap-4">
+          {tasks.map((task) => (
+            <div
+              key={task.id}
+              className="flex justify-between items-center rounded-lg border-2 border-primary bg-primary-foreground w-full h-auto p-4 "
+            >
+              <p className="break-word max-w-xs text-wrap">{task.label}</p>
+              <Popover>
+                <PopoverTrigger>
+                  <RxDotsVertical />
+                </PopoverTrigger>
+                <PopoverContent className=" w-fit">
+                  {createList(task.id, task.label)}
+                </PopoverContent>
+              </Popover>
+            </div>
+          ))}
+        </div>
       ) : (
         <></>
       )}
