@@ -6,10 +6,8 @@ import { RxDotsVertical } from "react-icons/rx";
 import { Popover, PopoverContent, PopoverTrigger } from "../shadcn-ui/popover";
 import { Button } from "../shadcn-ui/button";
 import { Input } from "../shadcn-ui/input";
-import { useState } from "react";
 
 export default function Tasks() {
-  const [newLabel, setNewLabel] = useState("");
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const dispatch = useDispatch();
 
@@ -19,7 +17,6 @@ export default function Tasks() {
 
   function handleEditTask(id: string, e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-    setNewLabel(value);
     dispatch(editTaskLabel({ id, label: value }));
   }
 
