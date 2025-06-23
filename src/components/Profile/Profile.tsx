@@ -13,7 +13,7 @@ export default function Profile() {
 
   return (
     <>
-      <div className="flex flex-col justify-between items-center h-full">
+      <div className="app-wrapper items-center justify-around gap-4">
         <div className="flex flex-col justify-center items-center gap-4">
           <Avatar>
             <AvatarImage src={user?.profilePic} />
@@ -33,8 +33,8 @@ export default function Profile() {
             </PopoverContent>
           </Popover>
         </div>
+        <Navbar />
       </div>
-      <Navbar />
     </>
   );
 }

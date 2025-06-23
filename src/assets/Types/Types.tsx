@@ -10,6 +10,7 @@ type Task = {
   label: string;
   category: "H2O" | "CO2" | "Society";
   isDone: boolean;
+  dueDate: string | undefined;
 };
 
 type Habit = {

@@ -176,19 +176,19 @@ body {
 }
 
 .app-wrapper{
+  position: relative;
   margin: 0 auto;
-  width: 40%;
+  width: 25%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: stretch;
 }
 
 @media screen and (max-width:600px) {
   .app-wrapper{
     margin: 0 ;
-    width: 100%;
-    border: none;
-  
+    width: 100%;  
   }
 }

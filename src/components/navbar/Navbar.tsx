@@ -5,14 +5,17 @@ import { Link } from "react-router";
 export default function Navbar() {
   const user = useSelector((state: RootState) => state.user.user);
   return (
-    <div className="flex justify-around items-center gap-4 rounded-xl w-max h-12 absolute bottom-8 right-[50%] translate-1/2">
+    <div className=" flex justify-between items-center  gap-4 rounded-xl  w-full h-12 absolute bottom-8 right-[50%] translate-1/2">
       <Link
         to={"/"}
-        className="rounded-full bg-secondary p-2 hover:bg-primary hover:text-secondary"
+        className="rounded-full bg-secondary p-2 px-4 hover:bg-primary hover:text-secondary content-center h-full "
       >
         Tasks
       </Link>
-      <Link to={"/profile"} className="rounded-full bg-secondary p-2 h-full">
+      <Link
+        to={"/profile"}
+        className="rounded-full bg-secondary py-2 px-4 h-full hover:bg-primary hover:text-secondary content-center"
+      >
         {user.profilePic ? (
           <img
             src={user.profilePic}
