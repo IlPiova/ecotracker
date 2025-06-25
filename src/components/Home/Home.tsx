@@ -115,21 +115,21 @@ export default function Home() {
 
   return (
     <>
-      <div className="  flex flex-col gap-2 justify-center items-start mb-10 m-4">
+      <div className="  flex flex-col gap-2 justify-center items-start mb-10 ">
         <h1 className="text-4xl font-black ">
           Ciao <span className="text-primary "> {user.name}</span>!
         </h1>
         <p className="text-sm ">{today}</p>
       </div>
-      <div className="flex flex-col items-center justify-start  w-full h-full m-4 ">
-        <div className=" flex flex-col items-start justify-centergap-4 w-full">
+      <div className="flex flex-col items-center justify-start  h-full  ">
+        <div className="  flex flex-col items-start justify-start justify-self-center gap-4 w-full">
           <h2 className="text-xl font-bold mb-4">Cosa vuoi fare oggi?</h2>
           <Tasks />
           <Habits />
         </div>
-        <div className="absolute bottom-25 right-4 ">
+        <div className="absolute bottom-25 right-1/2 translate-x-1/2 ">
           <Popover>
-            <PopoverTrigger className=" bg-primary text-lg font-bold rounded-full p-4 ">
+            <PopoverTrigger className="bg-primary text-lg font-bold rounded-full p-4 ">
               <RxPlus className="h-6 w-auto text-secondary" />
             </PopoverTrigger>
             <PopoverContent>{createTask()}</PopoverContent>

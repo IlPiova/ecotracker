@@ -23,9 +23,9 @@ export default function Tasks() {
           todayTasks.map((task) => (
             <div
               key={task.id}
-              className="flex justify-between items-center rounded-lg border-2 border-primary bg-primary-foreground w-full h-auto p-4 "
+              className="flex justify-around items-center rounded-lg border-2 border-primary bg-primary-foreground w-full h-auto"
             >
-              <p className="break-word max-w-xs text-wrap wrap-break-word">
+              <p className="break-word max-w-xs text-wrap wrap-break-word px-4 py-2">
                 {task.label}
               </p>
               <div className="flex justify-between items-center gap-1">
