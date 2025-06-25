@@ -127,7 +127,7 @@ export default function Home() {
           <Tasks />
           <Habits />
         </div>
-        <div className="absolute bottom-25 right-1 ">
+        <div className="absolute bottom-25 right-4 ">
           <Popover>
             <PopoverTrigger className=" bg-primary text-lg font-bold rounded-full p-4 ">
               <RxPlus className="h-6 w-auto text-secondary" />

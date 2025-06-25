@@ -32,6 +32,12 @@ export default defineConfig({
           },
         ],
       },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,json,webmanifest}"],
+      },
+      devOptions: {
+        enabled: true, // Per abilitare il Service Worker in modalità dev
+      },
     }),
   ],
   resolve: {
