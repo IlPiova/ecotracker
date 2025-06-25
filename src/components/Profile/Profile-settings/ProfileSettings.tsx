@@ -8,7 +8,6 @@ import { editUser } from "../../../features/userSlice/UserSlice";
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/shadcn-ui/button";
-import { Link } from "react-router";
 
 export default function ProfileSettings() {
   const dispatch = useDispatch();
@@ -17,7 +16,6 @@ export default function ProfileSettings() {
     myUser ?? {
       name: "",
       lastName: "",
-      profilePic: "",
       motto: "",
     }
   );
@@ -29,23 +27,6 @@ export default function ProfileSettings() {
     });
   }
 
-  function handlePicChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (file) {
-      // Mi assicuro che il file non sia nulla
-      setNewUser({
-        ...newUser,
-        profilePic: URL.createObjectURL(file),
-      });
-    } else {
-      //Se null, imposto immagine di default
-      setNewUser({
-        ...newUser,
-        profilePic: "https://placehold.co/400",
-      });
-    }
-  }
-
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(editUser(newUser));
@@ -54,17 +35,6 @@ export default function ProfileSettings() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="profilePic">Foto Profilo:</label>
-        <Input
-          type="file"
-          name="profilePic"
-          id="profilePic"
-          alt="Insert profile image"
-          placeholder="Insert profile image"
-          accept="image/"
-          onChange={handlePicChange}
-        />
-
         <label htmlFor="name">Name:</label>
         <Input
           type="text"
@@ -102,9 +72,6 @@ export default function ProfileSettings() {
           Save
         </Button>
       </form>
-      <Link to="/profile">
-        <Button variant={"outline"}>Home</Button>
-      </Link>
     </>
   );
 }

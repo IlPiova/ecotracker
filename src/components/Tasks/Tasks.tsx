@@ -6,6 +6,7 @@ import NTIllustatin from "../../assets/no-taasks-illustration.svg";
 
 import { RxDotsVertical } from "react-icons/rx";
 import { Popover, PopoverContent, PopoverTrigger } from "../shadcn-ui/popover";
+import { Badge } from "../shadcn-ui/badge";
 
 export default function Tasks() {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
@@ -27,14 +28,17 @@ export default function Tasks() {
               <p className="break-word max-w-xs text-wrap wrap-break-word">
                 {task.label}
               </p>
-              <Popover>
-                <PopoverTrigger>
-                  <RxDotsVertical />
-                </PopoverTrigger>
-                <PopoverContent className=" w-fit">
-                  <TaskActions id={task.id} label={task.label} />
-                </PopoverContent>
-              </Popover>
+              <div className="flex justify-between items-center gap-1">
+                <Badge variant="secondary">{task.category}</Badge>
+                <Popover>
+                  <PopoverTrigger>
+                    <RxDotsVertical />
+                  </PopoverTrigger>
+                  <PopoverContent className=" w-fit">
+                    <TaskActions id={task.id} label={task.label} />
+                  </PopoverContent>
+                </Popover>
+              </div>
             </div>
           ))
         ) : (

@@ -192,3 +192,10 @@ body {
     width: 100%;  
   }
 }
+
+@media screen and (max-width:800px) {
+  .app-wrapper{
+    margin: 0 ;
+    width: 80%;  
+  }
+}

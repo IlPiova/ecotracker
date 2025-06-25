@@ -57,40 +57,53 @@ export default function Home() {
   // Funzione crea singola task
   function createTask() {
     return (
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="label">What did you do today?</label>
-        <Input
-          type="text"
-          name="label"
-          id="label"
-          alt="Insert new task"
-          placeholder="Insert new task"
-          value={formValues.label}
-          onChange={(e) =>
-            setFormValues({ ...formValues, label: e.target.value })
-          }
-        />
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-3 items-start justify-center"
+      >
+        <div>
+          <label htmlFor="label">What did you do today?</label>
+          <Input
+            type="text"
+            name="label"
+            id="label"
+            alt="Insert new task"
+            placeholder="Insert new task"
+            value={formValues.label}
+            onChange={(e) =>
+              setFormValues({ ...formValues, label: e.target.value })
+            }
+          />
+        </div>
+        <div className="flex justify-between items-center gap-3 w-full ">
+          <div>
+            <label htmlFor="category">Category:</label>
+            <Select
+              value={formValues.category}
+              onValueChange={(value) =>
+                setFormValues({
+                  ...formValues,
+                  category: value as "H2O" | "CO2" | "Society",
+                })
+              }
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="CO2">CO2</SelectItem>
+                <SelectItem value="Society">Society</SelectItem>
+                <SelectItem value="H2O">H2O</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-        <label htmlFor="category">Category:</label>
-        <Select
-          value={formValues.category}
-          onValueChange={(value) =>
-            setFormValues({
-              ...formValues,
-              category: value as "H2O" | "CO2" | "Society",
-            })
-          }
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Category" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="CO2">CO2</SelectItem>
-            <SelectItem value="Society">Society</SelectItem>
-            <SelectItem value="H2O">H2O</SelectItem>
-          </SelectContent>
-        </Select>
-        <DatePickerDemo date={dueDate} setDate={setDueDate} />
+          <div>
+            <label htmlFor="date-picker">Date:</label>
+
+            <DatePickerDemo date={dueDate} setDate={setDueDate} />
+          </div>
+        </div>
         <Button variant={"default"} type="submit">
           Save
         </Button>

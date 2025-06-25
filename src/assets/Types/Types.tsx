@@ -1,7 +1,6 @@
 type User = {
   name: string;
   lastName: string;
-  profilePic: string;
   motto: string;
 };
 
