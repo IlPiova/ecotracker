@@ -185,12 +185,14 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items:start;
+  border: 1px solid red ;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:640px) {
   .app-wrapper{
     margin: 0  auto;
-    width: 100%;
-  
+    width: 100vw;
+    max-width: 600px;
+  border: 7px solid blue;
   }
 }

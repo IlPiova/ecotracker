@@ -121,7 +121,7 @@ export default function Home() {
         </h1>
         <p className="text-sm ">{today}</p>
       </div>
-      <div className="flex flex-col items-center justify-start  h-full  ">
+      <div className="flex flex-col items-center justify-start  h-full border-2 border-red-500 w-full ">
         <div className="  flex flex-col items-start justify-start justify-self-center gap-4 w-full">
           <h2 className="text-xl font-bold mb-4">Cosa vuoi fare oggi?</h2>
           <Tasks />

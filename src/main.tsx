@@ -19,15 +19,3 @@ createRoot(document.getElementById("root")!).render(
     </Provider>
   </StrictMode>
 );
-
-// La registrazione del service worker avviene dopo che il DOM è stato caricato completamente
-window.addEventListener("load", () => {
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then(() => console.log("Service worker registrato"))
-      .catch(() =>
-        console.error("Errore nella registrazione del service worker")
-      );
-  }
-});
