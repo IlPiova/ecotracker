@@ -21,7 +21,7 @@ export default function Tasks() {
   );
 
   // Funzione per modificare lo stato di una singola task
-  function handleCheckTask(id: string, isChecked: boolean) {
+  function handleCheckTask(id: string) {
     dispatch(setStatus(id));
   }
 
@@ -40,7 +40,7 @@ export default function Tasks() {
                   checked={task.isDone}
                   className="ml-4"
                   onCheckedChange={
-                    (isChecked: boolean) => handleCheckTask(task.id, isChecked) //Se la checkbox è checked (true) anche isDone sarà true
+                    () => handleCheckTask(task.id) //Se la checkbox è checked (true) anche isDone sarà true
                   }
                 />
                 {
