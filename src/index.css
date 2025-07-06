@@ -161,7 +161,6 @@
 /* Classi generali */
 *{
   box-sizing: border-box;
-  /* border: 1px solid red ; */
   
 }
 
@@ -179,7 +178,7 @@ body {
 .app-wrapper{
   margin: 0 auto;
   padding-left: 16px;
-  width: 25%;
+  width: 80%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -187,11 +186,10 @@ body {
   align-items:start;
 }
 
-@media screen and (max-width:640px) {
+@media screen and (max-width:1080px) {
   .app-wrapper{
     margin: 0  auto;
     width: 100vw;
     max-width: 600px;
-  border: 7px solid ;
   }
 }

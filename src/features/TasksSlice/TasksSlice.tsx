@@ -35,8 +35,13 @@ export const tasks = createSlice({
         if (task.id === action.payload.id) task.label = action.payload.label;
       });
     },
+    setStatus: (state, action: PayloadAction<string>) => {
+      state.tasks.map((task) => {
+        if (task.id === action.payload) task.isDone = !task.isDone;
+      });
+    },
   },
 });
 
 export default tasks.reducer;
-export const { addTask, removeTask, editTaskLabel } = tasks.actions;
+export const { addTask, removeTask, editTaskLabel, setStatus } = tasks.actions;

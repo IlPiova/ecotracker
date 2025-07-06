@@ -1,20 +1,29 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "@/store/Store";
+
 import { TaskActions } from "./TaskActions";
+import { setStatus } from "@/features/TasksSlice/TasksSlice";
 
 import NTIllustatin from "../../assets/no-taasks-illustration.svg";
 
 import { RxDotsVertical } from "react-icons/rx";
 import { Popover, PopoverContent, PopoverTrigger } from "../shadcn-ui/popover";
 import { Badge } from "../shadcn-ui/badge";
+import { Checkbox } from "../shadcn-ui/checkbox";
 
 export default function Tasks() {
+  let dispatch = useDispatch();
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const today = new Date().toDateString();
 
   const todayTasks = tasks.filter(
     (task) => task.dueDate && new Date(task.dueDate).toDateString() === today
   );
+
+  // Funzione per modificare lo stato di una singola task
+  function handleCheckTask(id: string, isChecked: boolean) {
+    dispatch(setStatus(id));
+  }
 
   return (
     <>
@@ -25,9 +34,27 @@ export default function Tasks() {
               key={task.id}
               className="flex justify-between items-center rounded-lg border-2 border-primary bg-primary-foreground w-full h-auto pr-3"
             >
-              <p className="break-word max-w-xs text-wrap wrap-break-word px-4 py-2">
-                {task.label}
-              </p>
+              <div className="flex items-center gap-4">
+                <Checkbox
+                  id={`task-${task.id}`}
+                  checked={task.isDone}
+                  className="ml-4"
+                  onCheckedChange={
+                    (isChecked: boolean) => handleCheckTask(task.id, isChecked) //Se la checkbox è checked (true) anche isDone sarà true
+                  }
+                />
+                {
+                  // Label necessario per aggiungere il testo della task alla checkbox
+                }
+                <label
+                  htmlFor={`task-${task.id}`}
+                  className={`break-word max-w-xs text-wrap wrap-break-word px-0 py-2 cursor-pointer ${
+                    task.isDone ? " text-primary line-through" : ""
+                  }`} // Rimosso padding orizzontale e reso cliccabile per la label
+                >
+                  {task.label}
+                </label>
+              </div>
               <div className="flex justify-between items-center gap-1">
                 <Badge variant="secondary">{task.category}</Badge>
                 <Popover>
