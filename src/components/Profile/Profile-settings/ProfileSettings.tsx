@@ -5,6 +5,7 @@ import type { RootState } from "../../../store/Store";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { editUser } from "../../../features/userSlice/UserSlice";
+import { addList } from "@/features/ListsSlice/listsSlice";
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/shadcn-ui/button";
@@ -12,6 +13,7 @@ import { Button } from "@/components/shadcn-ui/button";
 export default function ProfileSettings() {
   const dispatch = useDispatch();
   const myUser = useSelector((state: RootState) => state.user.user);
+
   const [newUser, setNewUser] = useState<User>(
     myUser ?? {
       name: "",
@@ -19,6 +21,7 @@ export default function ProfileSettings() {
       motto: "",
     }
   );
+  const [newListItem, setNewlistItem] = useState<string>("");
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setNewUser({
@@ -30,6 +33,7 @@ export default function ProfileSettings() {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(editUser(newUser));
+    dispatch(addList(newListItem));
   }
 
   return (
@@ -66,6 +70,17 @@ export default function ProfileSettings() {
           placeholder="Insert user's motto"
           value={newUser?.motto}
           onChange={handleChange}
+        />
+
+        <label htmlFor="list">Add new list:</label>
+        <Input
+          type="text"
+          name="list"
+          id="list"
+          alt="Insert one new list"
+          placeholder="Insert one new list"
+          value={newListItem}
+          onChange={(e) => setNewlistItem(e.target.value)}
         />
 
         <Button variant={"default"} type="submit">

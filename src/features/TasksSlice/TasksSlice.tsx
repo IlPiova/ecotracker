@@ -12,14 +12,14 @@ export const tasks = createSlice({
       state,
       action: PayloadAction<{
         label: string;
-        category: "H2O" | "CO2" | "Society";
+        list: string;
         dueDate: string | undefined;
       }>
     ) => {
       state.tasks.push({
         id: crypto.randomUUID(),
         label: action.payload.label,
-        category: action.payload.category,
+        list: action.payload.list,
         dueDate: action.payload.dueDate,
         isDone: false,
       });

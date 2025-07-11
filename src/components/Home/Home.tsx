@@ -1,12 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, type FormEvent } from "react";
+import type { RootState } from "@/store/Store";
 
 import { addTask } from "@/features/TasksSlice/TasksSlice";
 import Navbar from "../navbar/Navbar";
 import Tasks from "../Tasks/Tasks";
-import Habits from "../Habits/Habits";
 
-import { Popover, PopoverContent, PopoverTrigger } from "../shadcn-ui/popover";
+import {
+  NewTaskPopover,
+  NewTaskPopoverContent,
+  NewTaskPopoverTrigger,
+} from "../shadcn-ui/newTaskPopOver";
 import {
   Select,
   SelectContent,
@@ -17,7 +21,6 @@ import {
 import { Input } from "../shadcn-ui/input";
 import { Button } from "../shadcn-ui/button";
 import { RxPlus } from "react-icons/rx";
-import type { RootState } from "@/store/Store";
 import { DatePickerDemo } from "../shadcn-ui/date-picker";
 
 export default function Home() {
@@ -35,23 +38,24 @@ export default function Home() {
   const today = new Date().toLocaleDateString("it-IT", options);
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
+  const lists = useSelector((state: RootState) => state.lists.lists);
 
   const [formValues, setFormValues] = useState<{
     label: string;
-    category: "H2O" | "CO2" | "Society";
-  }>({ label: "", category: "CO2" });
+    list: string;
+  }>({ label: "", list: "General" });
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(
       addTask({
         label: formValues.label,
-        category: formValues.category,
+        list: formValues.list,
         dueDate: dueDate ? dueDate.toISOString() : undefined,
       })
     );
 
-    setFormValues({ label: "", category: "CO2" });
+    setFormValues({ label: "", list: "General" });
   }
 
   // Funzione crea singola task
@@ -77,23 +81,22 @@ export default function Home() {
         </div>
         <div className="flex justify-between items-center gap-3 w-full ">
           <div>
-            <label htmlFor="category">Category:</label>
+            <label htmlFor="list">List:</label>
             <Select
-              value={formValues.category}
+              value={formValues.list}
               onValueChange={(value) =>
-                setFormValues({
-                  ...formValues,
-                  category: value as "H2O" | "CO2" | "Society",
-                })
+                setFormValues({ ...formValues, list: value })
               }
             >
               <SelectTrigger>
-                <SelectValue placeholder="Category" />
+                <SelectValue placeholder="List" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="CO2">CO2</SelectItem>
-                <SelectItem value="Society">Society</SelectItem>
-                <SelectItem value="H2O">H2O</SelectItem>
+                {lists.map((list, i) => (
+                  <SelectItem value={list} key={i}>
+                    {list}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -125,15 +128,18 @@ export default function Home() {
         <div className="  flex flex-col items-start justify-start justify-self-center gap-4 w-full">
           <h2 className="text-xl font-bold mb-4">Cosa vuoi fare oggi?</h2>
           <Tasks />
-          <Habits />
         </div>
+
+        {/* Bottone per aggiungere nuova task */}
         <div className="absolute bottom-25 right-1/2 translate-x-1/2 ">
-          <Popover>
-            <PopoverTrigger className="bg-primary text-lg font-bold rounded-full p-4 ">
+          <NewTaskPopover>
+            <NewTaskPopoverTrigger className="bg-primary text-lg font-bold rounded-full p-4 ">
               <RxPlus className="h-6 w-auto text-secondary" />
-            </PopoverTrigger>
-            <PopoverContent>{createTask()}</PopoverContent>
-          </Popover>
+            </NewTaskPopoverTrigger>
+            <NewTaskPopoverContent className="relative top-[-50%] left-1/2 w-10/12">
+              {createTask()}
+            </NewTaskPopoverContent>
+          </NewTaskPopover>
         </div>
         <Navbar />
       </div>

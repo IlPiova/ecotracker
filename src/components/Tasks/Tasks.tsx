@@ -56,7 +56,7 @@ export default function Tasks() {
                 </label>
               </div>
               <div className="flex justify-between items-center gap-1">
-                <Badge variant="secondary">{task.category}</Badge>
+                <Badge variant="secondary">{task.list}</Badge>
                 <Popover>
                   <PopoverTrigger>
                     <RxDotsVertical />
