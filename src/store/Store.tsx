@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "../features/userSlice/UserSlice";
 import tasksReducer from "../features/TasksSlice/TasksSlice";
-import listsReducer from "../features/ListsSlice/listsSlice";
+import listsReducer from "../features/ListsSlice/ListsSlice";
 
 //Funzione di aggiornamento degli stati
 function updateState(

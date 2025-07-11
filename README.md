@@ -4,7 +4,7 @@ TodoTracker è una PWA che permette all'utente di tenere traccia delle attività
 
 Permette di creare semplici task, scegliere la data in cui svolgerle e ordinarle in liste.
 
-Testa e installa l'applicazione da (qui)[https://ilpiova-todotracker.netlify.app]
+Testa e installa l'applicazione da https://ilpiova-todotracker.netlify.app
 
 ## Tecnologie utilizzate
 

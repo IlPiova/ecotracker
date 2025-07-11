@@ -5,7 +5,7 @@ import type { RootState } from "../../../store/Store";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { editUser } from "../../../features/userSlice/UserSlice";
-import { addList } from "@/features/ListsSlice/listsSlice";
+import { addList } from "@/features/ListsSlice/ListsSlice";
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/shadcn-ui/button";
