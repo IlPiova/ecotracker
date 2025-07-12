@@ -13,7 +13,7 @@ export const tasks = createSlice({
       action: PayloadAction<{
         label: string;
         list: string;
-        dueDate: string | undefined;
+        dueDate: string;
       }>
     ) => {
       state.tasks.push({
@@ -27,12 +27,21 @@ export const tasks = createSlice({
     removeTask: (state, isAction: PayloadAction<string>) => {
       state.tasks = state.tasks.filter((task) => task.id !== isAction.payload);
     },
-    editTaskLabel: (
+    editTask: (
       state,
-      action: PayloadAction<{ id: string; label: string }>
+      action: PayloadAction<{
+        id: string;
+        label: string;
+        dueDate: string;
+        list: string;
+      }>
     ) => {
       state.tasks.map((task) => {
-        if (task.id === action.payload.id) task.label = action.payload.label;
+        if (task.id === action.payload.id) {
+          task.label = action.payload.label;
+          task.list = action.payload.list;
+          task.dueDate = action.payload.dueDate;
+        }
       });
     },
     setStatus: (state, action: PayloadAction<string>) => {
@@ -44,4 +53,4 @@ export const tasks = createSlice({
 });
 
 export default tasks.reducer;
-export const { addTask, removeTask, editTaskLabel, setStatus } = tasks.actions;
+export const { addTask, removeTask, editTask, setStatus } = tasks.actions;

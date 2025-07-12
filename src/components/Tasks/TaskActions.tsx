@@ -1,11 +1,42 @@
 import { Button } from "../shadcn-ui/button";
 import { Input } from "../shadcn-ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "../shadcn-ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../shadcn-ui/select";
+import { DatePickerDemo } from "../shadcn-ui/date-picker";
 
-import { useDispatch } from "react-redux";
-import { removeTask, editTaskLabel } from "@/features/TasksSlice/TasksSlice";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeTask, editTask } from "@/features/TasksSlice/TasksSlice";
+import type { RootState } from "@/store/Store";
 
-export function TaskActions({ id, label }: { id: string; label: string }) {
+export function TaskActions({
+  id,
+  label,
+  list,
+  dueDate,
+}: {
+  id: string;
+  label: string;
+  list: string;
+  dueDate: string;
+}) {
+  const [newTask, setNewTask] = useState({
+    id: id,
+    label: label,
+    list: list,
+    dueDate: dueDate,
+  });
+  const [newDueDate, setNewDueDate] = useState<Date | undefined>(
+    new Date(newTask.dueDate)
+  );
+
+  const lists = useSelector((state: RootState) => state.lists.lists);
   const dispatch = useDispatch();
 
   // Funzione per eliminare una singola task
@@ -14,9 +45,16 @@ export function TaskActions({ id, label }: { id: string; label: string }) {
   }
 
   // Funzione per modificare una singola task
-  function handleEditTask(id: string, e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
-    dispatch(editTaskLabel({ id, label: value }));
+  //id: string, e: React.ChangeEvent<HTMLInputElement>
+  function handleEditTask() {
+    dispatch(
+      editTask({
+        id,
+        label: newTask.label,
+        list: newTask.list,
+        dueDate: newTask.dueDate,
+      })
+    );
   }
 
   // Funzione che crea la lista con le task della giornata
@@ -25,24 +63,61 @@ export function TaskActions({ id, label }: { id: string; label: string }) {
     <div className="flex flex-col justify-center items-stretch gap-4 w-fit">
       <Popover>
         <PopoverTrigger>
-          <Button variant={"ghost"}>Edit task</Button>
+          <div>Edit task</div>
         </PopoverTrigger>
-        <PopoverContent className=" w-fit">
-          <Input
-            type="text"
-            name="name"
-            id="name"
-            alt="Insert your task"
-            placeholder="Insert your task"
-            value={label}
-            onChange={(e) => handleEditTask(id, e)}
-          />
+        <PopoverContent className=" w-max">
+          <form className="flex flex-col gap-3 items-start justify-center">
+            <div>
+              <label htmlFor="label">Edit your task label:</label>
+              <Input
+                type="text"
+                name="name"
+                id="name"
+                alt="Insert your task"
+                placeholder="Insert your task"
+                value={newTask.label}
+                onChange={(e) =>
+                  setNewTask({ ...newTask, label: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="flex justify-between items-center gap-3 w-full ">
+              <div>
+                <label htmlFor="list">List:</label>
+                <Select
+                  value={newTask.list}
+                  onValueChange={(value) =>
+                    setNewTask({ ...newTask, list: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="list" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {lists.map((list, i) => (
+                      <SelectItem value={list} key={i}>
+                        {list}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex flex-col align-center justify-start">
+                <label htmlFor="date-picker">Date:</label>
+
+                <DatePickerDemo date={newDueDate} setDate={setNewDueDate} />
+              </div>
+            </div>
+            <Button variant={"default"} onClick={() => handleEditTask()}>
+              Submit
+            </Button>
+          </form>
         </PopoverContent>
       </Popover>
 
-      <Button variant={"ghost"} onClick={() => handleDeleteTask(id)}>
-        Delete task
-      </Button>
+      <div onClick={() => handleDeleteTask(id)}>Delete task</div>
     </div>
   );
 }

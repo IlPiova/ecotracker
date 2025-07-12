@@ -9,7 +9,7 @@ type Task = {
   label: string;
   list: string;
   isDone: boolean;
-  dueDate: string | undefined;
+  dueDate: string;
 };
 
 export { type User, type Task };
