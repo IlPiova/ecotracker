@@ -3,11 +3,7 @@ import type { RootState } from "@/store/Store";
 
 import Navbar from "../navbar/Navbar";
 
-import {
-  NewTaskPopover,
-  NewTaskPopoverContent,
-  NewTaskPopoverTrigger,
-} from "../shadcn-ui/newTaskPopOver";
+import { Popover, PopoverContent, PopoverTrigger } from "../shadcn-ui/popover";
 
 import { RxPlus } from "react-icons/rx";
 import TaskCreator from "../Tasks/TaskCreator";
@@ -43,14 +39,14 @@ export default function Home() {
 
           {/* Bottone per aggiungere nuova task */}
           <div className="absolute bottom-25 right-1/2 translate-x-1/2 ">
-            <NewTaskPopover>
-              <NewTaskPopoverTrigger className="bg-primary text-lg font-bold rounded-full p-4 ">
+            <Popover>
+              <PopoverTrigger className="bg-primary text-lg font-bold rounded-full p-4 ">
                 <RxPlus className="h-6 w-auto text-secondary" />
-              </NewTaskPopoverTrigger>
-              <NewTaskPopoverContent className="relative top-[-50%] left-1/2 w-10/12">
+              </PopoverTrigger>
+              <PopoverContent>
                 <TaskCreator />
-              </NewTaskPopoverContent>
-            </NewTaskPopover>
+              </PopoverContent>
+            </Popover>
           </div>
           <Navbar />
         </div>

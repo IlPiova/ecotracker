@@ -38,51 +38,58 @@ export default function ProfileSettings() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <Input
-          type="text"
-          name="name"
-          id="name"
-          alt="Insert user's name"
-          placeholder="Insert user's name"
-          value={newUser?.name}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="lastName">Last name:</label>
-        <Input
-          type="text"
-          name="lastName"
-          id="lastName"
-          alt="Insert user's last name"
-          placeholder="Insert user's last name"
-          value={newUser?.lastName}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="lastName">Your motto:</label>
-        <Input
-          type="text"
-          name="motto"
-          id="motto"
-          alt="Insert user's motto"
-          placeholder="Insert user's motto"
-          value={newUser?.motto}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="list">Add new list:</label>
-        <Input
-          type="text"
-          name="list"
-          id="list"
-          alt="Insert one new list"
-          placeholder="Insert one new list"
-          value={newListItem}
-          onChange={(e) => setNewlistItem(e.target.value)}
-        />
-
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col  justify-start align-center gap-3"
+      >
+        <div>
+          <label htmlFor="name">Name:</label>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            alt="Insert user's name"
+            placeholder="Insert user's name"
+            value={newUser?.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last name:</label>
+          <Input
+            type="text"
+            name="lastName"
+            id="lastName"
+            alt="Insert user's last name"
+            placeholder="Insert user's last name"
+            value={newUser?.lastName}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">Your motto:</label>
+          <Input
+            type="text"
+            name="motto"
+            id="motto"
+            alt="Insert user's motto"
+            placeholder="Insert user's motto"
+            value={newUser?.motto}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="list">Add new list:</label>
+          <Input
+            type="text"
+            name="list"
+            id="list"
+            alt="Insert one new list"
+            placeholder="Insert one new list"
+            value={newListItem}
+            onChange={(e) => setNewlistItem(e.target.value)}
+          />
+        </div>
         <Button variant={"default"} type="submit">
           Save
         </Button>
