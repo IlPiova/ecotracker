@@ -7,7 +7,13 @@ export default function Navbar() {
         to={"/"}
         className="rounded-full bg-secondary p-2 px-4 hover:bg-primary hover:text-secondary content-center h-full"
       >
-        Tasks
+        Today
+      </Link>
+      <Link
+        to={"/all"}
+        className="rounded-full bg-secondary p-2 px-4 hover:bg-primary hover:text-secondary content-center h-full "
+      >
+        All Tasks
       </Link>
 
       <Link

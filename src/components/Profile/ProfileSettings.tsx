@@ -1,10 +1,10 @@
 import { type User } from "@/assets/Types/Types";
 import { Input } from "@/components/shadcn-ui/input";
 
-import type { RootState } from "../../../store/Store";
+import type { RootState } from "../../store/Store";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { editUser } from "../../../features/userSlice/UserSlice";
+import { editUser } from "../../features/userSlice/UserSlice";
 import { addList } from "@/features/ListsSlice/ListsSlice";
 
 import { useState, type FormEvent } from "react";

@@ -3,7 +3,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../shadcn-ui/popover";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store/Store";
 import Navbar from "../navbar/Navbar";
-import ProfileSettings from "./Profile-settings/ProfileSettings";
+import ProfileSettings from "./ProfileSettings";
 
 import "../../index.css";
 

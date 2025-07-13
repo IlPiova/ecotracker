@@ -3,20 +3,16 @@ import type { RootState } from "@/store/Store";
 
 import NTIllustatin from "../../assets/no-taasks-illustration.svg";
 import TaskComponent from "./TaskComponent";
+import Navbar from "../navbar/Navbar";
 
-export default function Tasks() {
+export default function AllTasksComponent() {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
-  const today = new Date().toDateString();
-
-  const todayTasks = tasks.filter(
-    (task) => task.dueDate && new Date(task.dueDate).toDateString() === today
-  );
 
   return (
     <>
       <div className="flex flex-col justify-start items-start gap-4 w-full">
-        {todayTasks.length > 0 ? (
-          todayTasks.map((task) => (
+        {tasks.length > 0 ? (
+          tasks.map((task) => (
             <TaskComponent
               key={task.id}
               id={task.id}
@@ -36,6 +32,7 @@ export default function Tasks() {
             />
           </div>
         )}
+        <Navbar />
       </div>
     </>
   );
