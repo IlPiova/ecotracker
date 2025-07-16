@@ -56,6 +56,7 @@ const store = configureStore({
 store.subscribe(() => {
   updateState(store.getState(), "storedUser");
   updateState(store.getState(), "storedTasks");
+  updateState(store.getState(), "storedLists");
 });
 export type RootState = ReturnType<typeof store.getState>;
 
