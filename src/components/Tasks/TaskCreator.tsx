@@ -26,12 +26,17 @@ export default function TaskCreator() {
     list: string;
   }>({ label: "", list: "General" });
 
+  function listSelector(name: string) {
+    const selectedList = lists.filter((list) => list.name === name);
+    return selectedList[0];
+  }
+
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(
       addTask({
         label: formValues.label,
-        list: formValues.list,
+        list: listSelector(formValues.list),
         dueDate: dueDate.toISOString(),
       })
     );
@@ -70,9 +75,9 @@ export default function TaskCreator() {
               <SelectValue placeholder="list" />
             </SelectTrigger>
             <SelectContent>
-              {lists.map((list, i) => (
-                <SelectItem value={list} key={i}>
-                  {list}
+              {lists.map((list) => (
+                <SelectItem value={list.name} key={list.id}>
+                  {list.name}
                 </SelectItem>
               ))}
             </SelectContent>

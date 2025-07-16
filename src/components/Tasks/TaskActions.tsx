@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeTask, editTask } from "@/features/TasksSlice/TasksSlice";
 import type { RootState } from "@/store/Store";
+import type { List } from "@/assets/Types/Types";
 
 export function TaskActions({
   id,
@@ -23,7 +24,7 @@ export function TaskActions({
 }: {
   id: string;
   label: string;
-  list: string;
+  list: List;
   dueDate: string;
 }) {
   const [newTask, setNewTask] = useState({
@@ -45,7 +46,6 @@ export function TaskActions({
   }
 
   // Funzione per modificare una singola task
-  //id: string, e: React.ChangeEvent<HTMLInputElement>
   function handleEditTask() {
     dispatch(
       editTask({
@@ -55,6 +55,12 @@ export function TaskActions({
         dueDate: newTask.dueDate,
       })
     );
+  }
+
+  //Funzione che restituisce una lista dato il suo nome
+  function listSelector(name: string) {
+    const selectedList = lists.filter((list) => list.name === name);
+    return selectedList[0];
   }
 
   // Funzione che crea la lista con le task della giornata
@@ -86,9 +92,9 @@ export function TaskActions({
               <div>
                 <label htmlFor="list">List:</label>
                 <Select
-                  value={newTask.list}
+                  value={newTask.list.name}
                   onValueChange={(value) =>
-                    setNewTask({ ...newTask, list: value })
+                    setNewTask({ ...newTask, list: listSelector(value) })
                   }
                 >
                   <SelectTrigger>
@@ -96,8 +102,8 @@ export function TaskActions({
                   </SelectTrigger>
                   <SelectContent>
                     {lists.map((list, i) => (
-                      <SelectItem value={list} key={i}>
-                        {list}
+                      <SelectItem value={list.name} key={i}>
+                        {list.name}
                       </SelectItem>
                     ))}
                   </SelectContent>

@@ -25,7 +25,7 @@ export default function TaskComponent({
   return (
     <div
       key={id}
-      className="flex justify-between items-center rounded-lg border-2 border-primary bg-primary-foreground w-full h-auto pr-3"
+      className="flex justify-between items-center rounded-lg border-2 border-primary bg-primary-foreground w-full h-auto pr-3 my-1.5"
     >
       <div className="flex items-center gap-4">
         <Checkbox
@@ -47,7 +47,9 @@ export default function TaskComponent({
         </label>
       </div>
       <div className="flex justify-between items-center gap-1">
-        <Badge variant="secondary">{list}</Badge>
+        <Badge variant={list.colour} className=" font-medium px-1.5 py-0.5 ">
+          {list.name}
+        </Badge>
         <Popover>
           <PopoverTrigger>
             <RxDotsVertical />

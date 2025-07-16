@@ -6,7 +6,7 @@ import listsReducer from "../features/ListsSlice/ListsSlice";
 //Funzione di aggiornamento degli stati
 function updateState(
   state: RootState,
-  key: "storedUser" | "storedTasks" | "storedlists"
+  key: "storedUser" | "storedTasks" | "storedLists"
 ) {
   //aggiornamento stato user
   if (key === "storedUser") {
@@ -21,7 +21,7 @@ function updateState(
   }
 
   // Aggiornamento stato liste
-  else if (key === "storedlists") {
+  else if (key === "storedLists") {
     const stringedListsState = JSON.stringify(state.lists);
     localStorage.setItem(key, stringedListsState);
   }

@@ -11,6 +11,17 @@ export default function Profile() {
   const user = useSelector((state: RootState) => state.user.user);
   const lists = useSelector((state: RootState) => state.lists.lists);
 
+  const listsColours = {
+    red: "bg-red-500",
+    orange: "bg-orange-500",
+    amber: "bg-amber-500",
+    yellow: "bg-yellow-500",
+    green: "bg-green-500",
+    blue: "bg-blue-500",
+    purple: "bg-purple-500",
+    pink: "bg-pink-500",
+  };
+
   return (
     <>
       <div className=" m-auto w-[80%] p-4 gap-4">
@@ -21,8 +32,16 @@ export default function Profile() {
           <p className="italic font-light">{user?.motto}</p>
           <h3 className="text-2xl font-bold self-start">My lists:</h3>
           <ul className="self-start">
-            {lists.map((list, i) => (
-              <li key={i}>{list}</li>
+            {lists.map((list) => (
+              <li
+                key={list.id}
+                className="flex justify-start items-center gap-2 mb-1"
+              >
+                <div
+                  className={`rounded-full p-2 ${listsColours[list.colour]}`}
+                ></div>
+                <p>{list.name}</p>
+              </li>
             ))}
           </ul>
         </div>

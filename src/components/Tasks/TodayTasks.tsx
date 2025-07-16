@@ -1,12 +1,20 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store/Store";
+import { useState } from "react";
 
-import NTIllustatin from "../../assets/no-taasks-illustration.svg";
-import TaskComponent from "./TaskComponent";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../shadcn-ui/select";
+import { DefaultFilter, ListFilter } from "./TasksFilter";
 
 export default function TodayTasks() {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const today = new Date().toDateString();
+  const [filter, setFilter] = useState<string>("default");
 
   const todayTasks = tasks.filter(
     (task) => task.dueDate && new Date(task.dueDate).toDateString() === today
@@ -14,27 +22,22 @@ export default function TodayTasks() {
 
   return (
     <>
+      <Select value={filter} onValueChange={(value) => setFilter(value)}>
+        <SelectTrigger>
+          <SelectValue placeholder="Filter" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="default">Default </SelectItem>
+          <SelectItem value="lists">Lists </SelectItem>
+        </SelectContent>
+      </Select>
       <div className="flex flex-col justify-start items-start gap-4 w-full">
-        {todayTasks.length > 0 ? (
-          todayTasks.map((task) => (
-            <TaskComponent
-              key={task.id}
-              id={task.id}
-              label={task.label}
-              isDone={task.isDone}
-              list={task.list}
-              dueDate={task.dueDate}
-            />
-          ))
+        {filter === "default" ? (
+          <DefaultFilter arr={todayTasks} />
+        ) : filter === "lists" ? (
+          <ListFilter arr={todayTasks} />
         ) : (
-          <div className="flex flex-col gap-4 justify-around items-start">
-            <p className="text-gray-500 ">Nessuna task per oggi!</p>
-            <img
-              src={NTIllustatin}
-              alt="Illustrazione Nessuna task"
-              className="w-[60%] h-auto max-w-sm mt-6"
-            />
-          </div>
+          <></>
         )}
       </div>
     </>

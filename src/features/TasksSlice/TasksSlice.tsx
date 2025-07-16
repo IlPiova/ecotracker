@@ -1,4 +1,4 @@
-import { type Task } from "@/assets/Types/Types";
+import { type Task, type List } from "@/assets/Types/Types";
 import { createSlice } from "@reduxjs/toolkit";
 import { type PayloadAction } from "@reduxjs/toolkit";
 
@@ -12,7 +12,7 @@ export const tasks = createSlice({
       state,
       action: PayloadAction<{
         label: string;
-        list: string;
+        list: List;
         dueDate: string;
       }>
     ) => {
@@ -33,7 +33,7 @@ export const tasks = createSlice({
         id: string;
         label: string;
         dueDate: string;
-        list: string;
+        list: List;
       }>
     ) => {
       state.tasks.map((task) => {

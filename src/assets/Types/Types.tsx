@@ -7,9 +7,23 @@ type User = {
 type Task = {
   id: string;
   label: string;
-  list: string;
+  list: List;
   isDone: boolean;
   dueDate: string;
 };
 
-export { type User, type Task };
+type List = {
+  id: string;
+  name: string;
+  colour:
+    | "red"
+    | "orange"
+    | "amber"
+    | "yellow"
+    | "green"
+    | "blue"
+    | "purple"
+    | "pink";
+};
+
+export { type User, type Task, type List };
